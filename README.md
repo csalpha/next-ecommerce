@@ -52,3 +52,14 @@
    5. add reducer
    6. create store provider
    7. handle add to cart button
+
+8. Create Shopping Cart Page
+
+   1. create cart.jsx
+   2. get cart items from use context
+   3. list items in cart items
+   4. remove Item handler
+   5. redirect to cart screen after add to cart
+   6. add select box for quantity
+   7. handle select box change
+   8. npm i @heroicons/react

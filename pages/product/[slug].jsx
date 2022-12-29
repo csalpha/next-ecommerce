@@ -11,6 +11,7 @@ import { Store } from "../../utils/Store";
 export default function ProductScreen() {
   const { state, dispatch } = useContext(Store);
 
+  const router = useRouter();
   const { query } = useRouter();
   const { slug } = query;
 
@@ -51,6 +52,10 @@ export default function ProductScreen() {
         quantity, // product quantity
       },
     });
+
+    //redirect user to the cart
+    // pass a new address as a parameter
+    router.push("/cart");
   };
 
   return (

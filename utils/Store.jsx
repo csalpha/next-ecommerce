@@ -35,6 +35,15 @@ const reducer = (state, action) => {
         },
       };
     }
+    case "CART_REMOVE_ITEM": {
+      // filter cartItems based on the slug
+      const cartItems = state.cart.cartItems.filter(
+        (item) => item.slug !== action.payload.slug
+      );
+      /* return all card items except that we passed in the
+      action.payload */
+      return { ...state, cart: { ...state.cart, cartItems } };
+    }
     default:
       return state; // return state as they are
   }
