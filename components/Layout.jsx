@@ -1,11 +1,19 @@
 import Head from "next/head";
 import Link from "next/link";
-import React from "react";
+import React, { useContext } from "react";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
+import { Store } from "../utils/Store";
+// [] {}
 
 export default function Layout({ title, children }) {
   const [toggleMenu, setToggleMenu] = React.useState(false);
+
+  const { state } = useContext(Store);
+  const { cart } = state;
+
+  console.log("cart: ");
+  console.log(cart);
 
   return (
     <>
@@ -31,8 +39,19 @@ export default function Layout({ title, children }) {
               <Link href='/contacts'>
                 <li className={`mx-4 cursor-pointer my-2 text-lg`}>Contacts</li>
               </Link>
-              <Link href='/cart'>
-                <li className={`mx-4 cursor-pointer my-2 text-lg`}>Cart</li>
+              <Link href='/'>
+                <li className={`mx-4 cursor-pointer my-2 text-lg`}>
+                  {" "}
+                  Cart
+                  {cart.cartItems.length > 0 && (
+                    <span className='ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white'>
+                      {
+                        cart.cartItems.reduce((a, c) => a + c.quantity, 0)
+                        /* sum of all quantities in the cart items */
+                      }
+                    </span>
+                  )}
+                </li>
               </Link>
               <Link href='/login'>
                 <li className='bg-[#2952e3] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd]'>
@@ -79,9 +98,21 @@ export default function Layout({ title, children }) {
                       Contacts
                     </li>
                   </Link>
-                  <Link href='/cart'>
-                    <li className={`mx-4 cursor-pointer my-2 text-lg`}>Cart</li>
+                  <Link href='/'>
+                    <li className={`mx-4 cursor-pointer my-2 text-lg`}>
+                      {" "}
+                      Cart
+                      {cart.cartItems.length > 0 && (
+                        <span className='ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white'>
+                          {
+                            cart.cartItems.reduce((a, c) => a + c.quantity, 0)
+                            /* sum of all quantities in the cart items */
+                          }
+                        </span>
+                      )}
+                    </li>
                   </Link>
+
                   <Link href='/login'>
                     <li className='bg-[#2952e3] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd]'>
                       Login
